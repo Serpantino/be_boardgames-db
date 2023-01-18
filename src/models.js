@@ -18,7 +18,26 @@ function fetchReviews() {
     })
 }
 
+function fetchReviewComments(id) {
+    // console.log('fetch id', id)
+    return db.query(sqlQueries.checkReviewIdExistsSQL, [id.review_id]).then(
+        ({rows}) => {
+        
+            if (rows.length === 0) {
+            throw(error);
+         } 
+         else {
+            
+            return db.query(sqlQueries.fetchReviewCommentsSQL, [id.review_id])
+            .then(reviewComments => {
+            
+            return reviewComments.rows;
+            });
+        }
+    })
+}
 
 
-module.exports = {fetchCategories, fetchReviews};
+
+module.exports = {fetchCategories, fetchReviews, fetchReviewComments};
 

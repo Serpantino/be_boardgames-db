@@ -25,6 +25,7 @@ app.all('/*',(request, response, next) => {
 
 app.use((error, request, response, next) => {
     
+    response.status(400).send({message: 'Bad Request, your request may be out of range'});
     response.status(500).send({message: 'Generic Server Error, please check your request & try again, if this persists contact us.'});
 });
 

@@ -1,4 +1,4 @@
-const { fetchCategories, fetchReviews } = require ('./models');
+const { fetchCategories, fetchReviews, fetchReviewComments } = require ('./models');
 
 //This requested alteration doesn't run.
 const getCategories = (request, response, next) => {
@@ -12,12 +12,6 @@ const getCategories = (request, response, next) => {
     .catch(error => next(error));
 }
 
-const get500Error = (request, response, next) => {
-    nonExistentFunc().then(foobar => {
-        response.status(200).send(foobar);
-    }).catch(error => next(error));
-}
-
 
 const getReviews = (request, response, next) => {
 
@@ -29,7 +23,21 @@ const getReviews = (request, response, next) => {
     .catch(error => next(error));
 }
 
-module.exports = {getCategories, getReviews, get500Error};
+const getReviewComments = (request, response, next) => {
+
+    fetchReviewComments(request.params)
+    .then((reviewComments) => {
+    
+        if (reviewComments.length === 0) {
+            response.status(200).send({message: 'There are currently no comments for that review'});
+        }
+        
+        response.status(200).send(reviewComments);
+    })
+    .catch(error => next(error));
+}
+
+module.exports = {getCategories, getReviews, getReviewComments};
 
 //!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_!_! //
 //!_!_!_!_!_!_!_!_MERGE NOTES_!_!_!_!_!_!_! //
