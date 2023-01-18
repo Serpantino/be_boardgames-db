@@ -39,7 +39,17 @@ function fetchReviews() {
 }  
 
 
-module.exports = {fetchCategories, fetchReviews, fetchReviewComments};
+
+function insertReviewComment(body, id) {
+    console.log('woosa', [...body])
+    return db.query(sqlQueries.insertReviewCommentSQL, [id.review_id,...body])
+    .then(
+        console.log('blarrrggg')
+    )
+}
+
+
+module.exports = {fetchCategories, fetchReviews, fetchReviewComments, insertReviewComment};
 
 
 /*Backup because HUSKY grrrrr 

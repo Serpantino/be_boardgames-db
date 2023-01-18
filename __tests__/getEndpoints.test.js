@@ -33,7 +33,6 @@ describe('GET Endpoints', () => {
 
                 expect(categoryData.body).toHaveLength(4);
                 categoryData.body.forEach((entry)=> {
-                    console.log('Looking at===>', entry);
                     expect(entry).toHaveProperty('slug');
                     expect(entry).toHaveProperty('description');
 

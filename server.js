@@ -1,7 +1,6 @@
 const express = require ("express");
 const boardGameRoutes = require('./src/routes');
 const app = express();
-const port = 9090;
 
 
 app.use(express.json());
@@ -15,8 +14,5 @@ app.get('/', (request, response) => {
 app.use('/api/', boardGameRoutes);
 
 
-// app.listen(port, () => {
-//     console.log(`Listening on ${port}`);
-// })
 
 module.exports = app;
