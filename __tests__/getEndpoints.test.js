@@ -120,7 +120,7 @@ describe("GET Endpoints", () => {
           .expect("Content-Type", "application/json; charset=utf-8");
       });
 
-      test(`Expect the response to have all the properties found on a review`, () => {
+      test.only(`Expect the response to have all the properties found on a review`, () => {
         return request(app)
           .get("/api/reviews/3")
           .then((singleReview) => {
