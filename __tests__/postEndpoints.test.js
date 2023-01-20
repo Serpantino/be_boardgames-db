@@ -72,7 +72,7 @@ describe('POST Endpoints', () => {
             return request(app).post('/api/reviews/3/comments').send({username: 'dav3rid', body: 'When I get that feeling I need, board game healing'})
             .expect(201)
             .then(({body}) => {
-                console.log('body',body)
+                
                 const comment = body.comment[0]
           
                     expect(comment).toHaveProperty("comment_id");
@@ -92,7 +92,7 @@ describe('POST Endpoints', () => {
                 return request(app).get('/api/reviews/2/comments')
                 .expect(200)
                 .then (({body}) => {
-                    console.log(body)
+                
                     expect(body.comments[0].comment_id).toBe(7);
                     expect(body.comments[0].author).toBe('dav3rid');
                     expect(body.comments[0].body).toBe('I never get board of this one');

@@ -15,7 +15,7 @@ const fetchReviewCommentsSQL = `SELECT * FROM comments WHERE review_id = $1 ORDE
 const patchReviewVotesSQL = `UPDATE reviews SET votes = votes + $2 WHERE review_id = $1`
 const fetchUserByUsernameSQL = `SELECT * from users WHERE username = $1;`
 const insertReviewCommentSQL = `INSERT INTO comments (review_id, author, body) VALUES ($1, $2, $3) RETURNING *;`
-
+const fetchAllUsersSQL = `SELECT * from users`;
 module.exports = {gameCategoriesSQL,
      getAllReviewsWithCommentCountSQL, 
      reviewCommentsSQL, 
@@ -24,5 +24,6 @@ module.exports = {gameCategoriesSQL,
      fetchReviewCommentsSQL,
      patchReviewVotesSQL,
      insertReviewCommentSQL,
-     fetchUserByUsernameSQL
+     fetchUserByUsernameSQL,
+     fetchAllUsersSQL
     };

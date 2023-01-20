@@ -6,7 +6,8 @@ const {
   fetchSingleReview,
   updateReviewVotes,
   fetchUser,
-  insertReviewComment
+  insertReviewComment,
+  fetchAllUsers
 } = require("./models");
 
 const getCategories = (request, response, next) => {
@@ -72,11 +73,22 @@ const postReviewComment = (request, response, next) => {
     }).catch(error => {next(error)});
 }
 
+const getAllUsers = (request, response, next) => {
+  
+  return fetchAllUsers().then(
+    (allUsers) => {
+      
+      response.status(200).send({users: allUsers})
+    }
+  ).catch(error => next(error))
+}
+
 module.exports = {
   getCategories,
   getReviews,
   getReviewComments,
   getSingleReview,
   patchReviewVoteCount,
-  postReviewComment
+  postReviewComment,
+  getAllUsers
 };
